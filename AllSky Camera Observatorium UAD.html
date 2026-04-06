@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://10.4.18.29/allsky/ -->
+<html prefix="og: http://ogp.me/ns#" ng-app="allsky" ng-controller="AppCtrl" lang="en" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Allsky Website">
+	<!-- From: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css -->
+	<link rel="stylesheet" href="./AllSky Camera Observatorium UAD_files/all.min.css" type="text/css">
+	<!-- https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css -->
+	<link rel="stylesheet" type="text/css" href="./AllSky Camera Observatorium UAD_files/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./AllSky Camera Observatorium UAD_files/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="./AllSky Camera Observatorium UAD_files/allsky.css">
+	<!-- From: https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js -->
+	<script src="./AllSky Camera Observatorium UAD_files/jquery.min.js.download"></script>
+	<!-- From: https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js -->
+	<script src="./AllSky Camera Observatorium UAD_files/angular.min.js.download"></script>
+	<script src="./AllSky Camera Observatorium UAD_files/moment.js.download"></script>
+	<script src="./AllSky Camera Observatorium UAD_files/stuquery.js.download"></script>
+	<script src="./AllSky Camera Observatorium UAD_files/virtualsky.js.download"></script>
+	<script src="./AllSky Camera Observatorium UAD_files/ng-lodash.min.js.download"></script>
+	<script src="./AllSky Camera Observatorium UAD_files/controller.js.download"></script>
+
+	<script>config = {
+		comment: "These settings impact what appears in the popout and the constellation overlay",
+		imageName: "/current/tmp/image.jpg",
+		location: "Yogyakarta, Indonesia",
+		latitude: "7.83305556S",
+		longitude: "110.38305556E",
+		camera: "RPi ",
+		lens: "Medusa Fisheye 1.7mm",
+		computer: "RPi 4 Model B Rev 1.5, 4 GB",
+		equipmentinfo: "UAD Observatory Sky Patrol",
+		owner: "Observatorium UAD",
+		auroraForecast: false,
+		auroraMap: "south",
+		intervalSeconds: 5,
+		showOverlayAtStartup: false,
+		overlayWidth: 875,
+		overlayHeight: 875,
+		overlayOffsetLeft: 0,
+		overlayOffsetTop: 0,
+		az: 0,
+		imageWidth: 900,
+		opacity: 0.5,
+		objectsComment: "If you want the Messier objects on the overlay remove the 'XXX_' below.",
+		XXX_objects: "virtualsky/messier.json",
+		meridian: false,
+		ecliptic: false,
+		fontsize: "14px",
+		cardinalpoints: true,
+		cardinalpoints_fontsize: "18px",
+		showstarlabels: true,
+		projection: "fisheye",
+		constellations: true,
+		constellationwidth: 0.75,
+		constellationlabels: false,
+		constellationboundaries: false,
+		constellationboundarieswidth: 0.75,
+		gridlines_eq: false,
+		gridlineswidth: 0.75,
+		showgalaxy: false,
+		galaxywidth: 0.75,
+		mouse: false,
+		keyboard: true,
+		showdate: false,
+		showposition: false,
+		sky_gradient: false,
+		gradient: false,
+		transparent: true,
+		lang: "en",
+		colours: "[array]",
+		live: true,
+		id: "starmap",
+		AllskyVersion: "v2024.12.06_06",
+		imageBorder: 0,
+		title: "AllSky Camera Observatorium UAD",
+		loadingImage: "loading.jpg"
+	}
+	</script>
+
+	<title>AllSky Camera Observatorium UAD</title>
+
+	<meta property="og:description" content="Live AllSky Camera Observatorium UAD - Pemantauan langit malam secara real-time">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://github.com/AllskyTeam/allsky/">
+	<meta property="og:image" content="image.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<link rel="shortcut icon" type="image/png" href="http://10.4.18.29/allsky/allsky-favicon.png">
+
+	<style>
+		.clear { clear: both; }
+		.content { max-width: 900px; margin: auto; }
+				.backgroundImage { background-image: url(''); }		#leftSidebar {  }	</style>
+</head>
+
+<body id="body">
+
+<div class="content">
+	<div class="header">
+		<div class="title">AllSky Camera Observatorium UAD</div>
+		<div ng-show="auroraForecast === true &amp;&amp; forecast" class="forecast float-end ng-hide">
+			<span>Aurora activity: </span>
+			<!-- ngRepeat: (key,val) in forecast -->
+		</div>
+		<div class="clear"></div>
+
+	</div>
+	<span class="notification" compile="notification"></span>
+	<span id="messages"></span>
+
+	<div class="info animated slideInRight ng-hide" ng-show="showInfo==true">
+		<ul>
+			<li><i class="fa fa-fw fa-map-marker-alt"></i>&nbsp; Location:&nbsp; <span class="ng-binding">Yogyakarta, Indonesia</span></li>
+			<li><i class="fa fa-fw fa-map-marker"></i>&nbsp; Latitude:&nbsp; <span class="ng-binding">7.83305556S</span></li>
+			<li><i class="fa fa-fw fa-map-marker"></i>&nbsp; Longitude:&nbsp; <span class="ng-binding">110.38305556E</span></li>
+			<li><i class="fa fa-fw fa-camera-retro"></i>&nbsp; Camera:&nbsp; <span class="ng-binding">RPi </span></li>
+			<li><i class="fa fa-fw fa-dot-circle"></i>&nbsp; Lens:&nbsp; <span class="ng-binding">Medusa Fisheye 1.7mm</span></li>
+			<li><i class="fa fa-fw fa-microchip"></i>&nbsp; Computer:&nbsp; <span class="ng-binding">RPi 4 Model B Rev 1.5, 4 GB</span></li>
+			<li><i class="fa fa-fw fa-keyboard"></i>&nbsp; Equipment info:&nbsp; <span class="ng-binding">UAD Observatory Sky Patrol</span></li>
+			<li><i class="fa fa-fw fa-user"></i>&nbsp; Owner:&nbsp; <span class="ng-binding">Observatorium UAD</span></li>
+			<li><i class="fa fa-fw fa-file-alt"></i>&nbsp; Allsky Version:&nbsp; <span class="ng-binding">v2024.12.06_06</span></li>
+			<li><i class="fa fa-fw fa-moon"></i>&nbsp; Moon Phase:&nbsp; <span class="ng-binding"></span></li>
+			<li><i class="fa fa-fw fa-sun"></i>&nbsp; Moon Illumination:&nbsp; <span class="ng-binding"></span></li>
+		</ul>
+	</div>
+	<ul id="leftSidebar" class="animated slideInLeft">
+		<li><a href="http://10.4.18.29/allsky/videos/" title="Archived Timelapes"><i class="fa fa-2x fa-fw fa-play-circle"></i></a></li>
+		<li><a href="http://10.4.18.29/allsky/keograms/" title="Archived Keograms"><i class="fa fa-2x fa-fw fa-barcode"></i></a></li>
+		<li><a href="http://10.4.18.29/allsky/startrails/" title="Archived Startrails"><i class="fa fa-2x fa-fw fa-star"></i></a></li>
+		<li><a href="http://10.4.18.29/current/tmp/image.jpg" title="Full-sized image"><i class="fa fa-2x fa-fw fa-expand-arrows-alt"></i></a></li>
+		<li><i class="fa fa-2x fa-fw fa-info-circle" title="Display information about the camera and other settings" ng-click="toggleInfo()" ng-class="{&#39;active&#39;: showInfo}"></i></li>
+	</ul>
+
+	<div id="imageContainer">
+		<div id="starmap_container" ng-show="showOverlay==true" class="ng-hide">
+			<div id="starmap"></div>
+		</div>
+		<div id="live_container"><img title="allsky image" class="current" src="./AllSky Camera Observatorium UAD_files/image.jpg"></div>
+	</div>
+<div>
+<div class="diy"><i class="fa fa-tools"></i> <a href="http://thomasjacquin.com/make-your-own-allsky-camera" title="A guide to build an allsky camera" target="_blank">Build your own</a></div>
+
+</div></div></body></html>
